@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2gkhyk1l6c27"]
+
+[ext_resource type="PackedScene" uid="uid://u6f22lxhp288" path="res://assets/blender models/gun.blend" id="1_hul1d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkufo"]
+albedo_color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[sub_resource type="Animation" id="Animation_bcotj"]
+resource_name = "Shoot"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.17, 0), Vector3(0, -0.17, 0.0556512), Vector3(0, -0.17, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxcmx"]
+_data = {
+"Shoot": SubResource("Animation_bcotj")
+}
+
+[node name="gun" instance=ExtResource("1_hul1d")]
+
+[node name="gun" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_wkufo")
+
+[node name="gun_animation" type="AnimationPlayer" parent="." index="1"]
+root_node = NodePath("../gun")
+libraries = {
+"": SubResource("AnimationLibrary_pxcmx")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.230579)
+target_position = Vector3(0, 0, -1)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="3"]
+_spawnable_scenes = PackedStringArray("res://scenes/bullet.tscn")
+spawn_path = NodePath("..")

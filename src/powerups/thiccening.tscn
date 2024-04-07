@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp3eqtarsnm6b"]
+
+[ext_resource type="Texture2D" uid="uid://cpuau1d24umc3" path="res://powerups/textures/chungus.png" id="1_20n1b"]
+[ext_resource type="Script" path="res://powerups/thiccening.gd" id="1_dno68"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+script = ExtResource("1_dno68")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_right = 136.0
+offset_bottom = 356.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_20n1b")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "THICCEN UP"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Become thicc +2 dick size"

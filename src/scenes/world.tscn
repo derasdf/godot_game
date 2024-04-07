@@ -1,0 +1,285 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0bwbl5vni7bw"]
+
+[ext_resource type="PackedScene" uid="uid://bv2r4va07dfdk" path="res://scenes/Level1.tscn" id="1_g5j3c"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_vce35"]
+[ext_resource type="Texture2D" uid="uid://hgcj508wvsb1" path="res://assets/textures/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="3_vbgts"]
+[ext_resource type="PackedScene" uid="uid://bopujh6yf3qvg" path="res://powerups/enrage.tscn" id="4_13flb"]
+[ext_resource type="Texture2D" uid="uid://cu37iow6nbx0t" path="res://assets/textures/loading bars/blue_opaque.png" id="4_dv2ra"]
+[ext_resource type="Texture2D" uid="uid://dgbgkhopp8jgu" path="res://assets/textures/loading bars/orange_opaque.png" id="5_iqspo"]
+[ext_resource type="PackedScene" uid="uid://wi0gxqqllr8m" path="res://scenes/lobby.tscn" id="7_ba485"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pt8aj"]
+sky_horizon_color = Color(0.623701, 0.637029, 0.665931, 1)
+sky_energy_multiplier = 1.25
+ground_bottom_color = Color(0.109804, 0.0941176, 0.113725, 1)
+ground_horizon_color = Color(0.623701, 0.637029, 0.665931, 1)
+
+[sub_resource type="Sky" id="Sky_3ct3a"]
+sky_material = SubResource("ProceduralSkyMaterial_pt8aj")
+
+[sub_resource type="Environment" id="Environment_pdaxt"]
+sky = SubResource("Sky_3ct3a")
+reflected_light_source = 1
+glow_enabled = true
+glow_blend_mode = 1
+glow_hdr_threshold = 2.0
+glow_hdr_scale = 1.0
+glow_map_strength = 0.5
+fog_light_color = Color(0.615686, 0.65098, 0.701961, 1)
+adjustment_brightness = 2.51
+adjustment_contrast = 4.2
+adjustment_saturation = 3.86
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4yhk"]
+bg_color = Color(0.741176, 0, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d3pb"]
+bg_color = Color(0.270588, 0.709804, 0.207843, 1)
+
+[node name="world" type="Node"]
+script = ExtResource("1_vce35")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.334565, 0.371572, 0, 0.743145, 0.669131, -0.5, 0.579484, -0.643582, 0, 0, 0)
+visible = false
+shadow_enabled = true
+directional_shadow_max_distance = 400.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pdaxt")
+
+[node name="Level1" parent="." instance=ExtResource("1_g5j3c")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_menu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 206.0
+offset_top = 152.0
+offset_right = -253.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/main_menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/main_menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "GAMING IS REAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="host_b" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Host game"
+
+[node name="join_b" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Join game"
+
+[node name="addres_entery" type="LineEdit" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Enter Address to Join Here"
+alignment = 1
+
+[node name="settings_b" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="exit_b" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="hud" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="aim" type="TextureRect" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+pivot_offset = Vector2(640, 360)
+texture = ExtResource("3_vbgts")
+stretch_mode = 5
+
+[node name="hitrect" type="ColorRect" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 0
+offset_right = 1283.0
+offset_bottom = 722.0
+color = Color(0.564706, 0.12549, 0.141176, 0.4)
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 650.0
+offset_right = -906.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_v4yhk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2d3pb")
+value = 100.0
+
+[node name="win_loss" type="Label" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.5
+offset_top = -342.5
+offset_right = 135.5
+offset_bottom = 342.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 500
+text = "L"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -50.0
+offset_right = 76.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/hud/MarginContainer"]
+layout_mode = 2
+split_offset = 520
+
+[node name="shield_cooldown" type="TextureProgressBar" parent="CanvasLayer/hud/MarginContainer/HSplitContainer"]
+layout_mode = 2
+fill_mode = 4
+texture_progress = ExtResource("4_dv2ra")
+
+[node name="reloading" type="TextureProgressBar" parent="CanvasLayer/hud/MarginContainer/HSplitContainer"]
+layout_mode = 2
+fill_mode = 4
+texture_progress = ExtResource("5_iqspo")
+
+[node name="upgrade_picker" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -481.0
+offset_right = 481.0
+offset_bottom = 185.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/upgrade_picker"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/upgrade_picker/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="name" type="Label" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "CHOOCK THE COCK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrades" type="GridContainer" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 300
+columns = 3
+
+[node name="choiche 1" type="Button" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades"]
+layout_mode = 2
+text = "choiche 1"
+
+[node name="choiche 2" type="Button" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades"]
+layout_mode = 2
+text = "choiche 2"
+
+[node name="choiche 3" type="Button" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades"]
+layout_mode = 2
+text = "choiche 3"
+
+[node name="Control" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades" instance=ExtResource("4_13flb")]
+visible = false
+layout_mode = 2
+
+[node name="Control2" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades" instance=ExtResource("4_13flb")]
+visible = false
+layout_mode = 2
+
+[node name="Control3" parent="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades" instance=ExtResource("4_13flb")]
+visible = false
+layout_mode = 2
+
+[node name="BG_canvas" type="CanvasLayer" parent="CanvasLayer"]
+layer = 0
+
+[node name="BG_color" type="ColorRect" parent="CanvasLayer/BG_canvas"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.286275, 0.121569, 0.294118, 1)
+
+[node name="lobby" parent="CanvasLayer" instance=ExtResource("7_ba485")]
+visible = false
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/character.tscn")
+spawn_path = NodePath("..")
+
+[node name="Win_Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="pressed" from="CanvasLayer/main_menu/MarginContainer/VBoxContainer/host_b" to="." method="_on_host_b_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_menu/MarginContainer/VBoxContainer/join_b" to="." method="_on_join_b_pressed"]
+[connection signal="button_up" from="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades/choiche 1" to="." method="_on_choiche_1_button_up"]
+[connection signal="button_up" from="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades/choiche 2" to="." method="_on_choiche_2_button_up"]
+[connection signal="button_up" from="CanvasLayer/upgrade_picker/MarginContainer/VBoxContainer/upgrades/choiche 3" to="." method="_on_choiche_3_button_up"]
+[connection signal="timeout" from="Win_Timer" to="." method="_on_win_timer_timeout"]

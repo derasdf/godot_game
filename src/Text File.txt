@@ -1,0 +1,13 @@
+mind hackers
+
+expand on these game concepts from stand point of game maker who wants to make  3d game similar to  spy party but different but it must have someting to do with ai non player nps's:
+"hacker infiltrating network. The hackers must gather intel and complete tasks while avoiding detection by security cameras or guards."
+npc hacker and detector
+npc hacker can do tasks: Pickpocketing, Hacking a Terminal with phone minigame, Tail an NPC,Disguise Change, poisoning someone,
+detector gameplay: cameras switching from one to another: wide shot with moving cam like in spyparty, many cameras
+, guard play in 3d envoirment: pocket search, catching the hacker,
+
+
+первый левл базовая обучалка банк - хакер - гард на камерах
+второй левл добавить кринжа в визуал хакера шизу какуюто - гард визуальные хаки
+третий левл меньше шизи но добавить что гард может выйти из за камер
